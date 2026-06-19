@@ -1,17 +1,24 @@
-# design_pattern
+# Flutter Cart App 🛒🌿
 
-A new Flutter project.
+Aplikasi e-commerce sederhana (keranjang belanja) yang dibangun menggunakan **Flutter** dengan mengimplementasikan **Cubit** (dari ekosistem BLoC) sebagai *state management*.
 
-## Getting Started
+## ✨ Fitur Utama
 
-This project is a starting point for a Flutter application.
+* **Daftar Produk:** Menampilkan daftar produk beserta nama dan harganya secara statis.
+* **Manajemen Keranjang (Real-time):** Pengguna dapat menambah (`+`) dan mengurangi (`-`) produk langsung dari halaman utama.
+* **Indikator Jumlah (Badge):** Menampilkan jumlah total item yang ada di dalam keranjang secara *real-time* di bagian `AppBar`.
+* **Detail Keranjang:** Halaman khusus untuk melihat seluruh item yang sudah dimasukkan ke dalam keranjang belanja. Pengguna juga dapat menghapus item dari halaman ini.
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Teknologi yang Digunakan
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+* **Framework:** [Flutter](https://flutter.dev/)
+* **Bahasa:** Dart
+* **State Management:** `flutter_bloc` (Cubit)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📦 Arsitektur State Management
+
+Aplikasi ini menggunakan pendekatan **Cubit** untuk menjaga state UI tetap tersinkronisasi tanpa memerlukan boilerplate yang terlalu panjang:
+
+* **`CartState`**: Menyimpan daftar `Product` yang saat ini ada di dalam keranjang dan memiliki *getter* `totalItems` untuk menghitung jumlah barang.
+* **`CartCubit`**: Mengandung logika bisnis. Menyediakan metode `addProduct()` dan `removeProduct()` yang akan memanipulasi *list* produk dan memanggil `emit()` untuk memperbarui UI.
+* **`BlocProvider` & `BlocBuilder`**: Digunakan untuk menyuntikkan Cubit ke pohon widget dan membangun ulang bagian UI tertentu saja saat terjadi perubahan data.
